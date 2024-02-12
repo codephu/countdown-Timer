@@ -4,10 +4,8 @@ const minutes = document.getElementById("minutes");
 const seconds = document.getElementById("seconds");
 
 const currentYear = new Date().getFullYear();
-const newYearTime =new Date(`January 29 ${currentYear} 00:00:00`);
-// const newYearTime2026 =
 
-//const newYearTime = new Date(`February 10 ${currentYear} 00:00:00`);
+const newYearTime = new Date(`January 29 ${currentYear} 00:00:00`);
 
 // Update countdown time
 function updateCountdown() {
