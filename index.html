@@ -1,36 +1,30 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Đếm ngược Tết Âm Lịch</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Đếm ngược Tết Âm Lịch</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <canvas id="fireworks"></canvas>
-<canvas id="flowers"></canvas>
 
 <div class="container">
-    <h1 class="title">Đếm ngược Tết Âm lịch</h1>
+  <h1 class="calligraphy">Chúc Mừng Năm Mới</h1>
+  <h2 id="lunarYear"></h2>
 
-    <h2 id="yearSolar" class="year"></h2>
-    <h3 id="yearLunar" class="lunar"></h3>
-
-    <div class="countdown">
-        <div class="box"><span id="days">0</span><small>Ngày</small></div>
-        <div class="box"><span id="hours">00</span><small>Giờ</small></div>
-        <div class="box"><span id="minutes">00</span><small>Phút</small></div>
-        <div class="box"><span id="seconds">00</span><small>Giây</small></div>
-    </div>
-
-    <button id="musicBtn">🎵 Bật nhạc Tết</button>
+  <div class="countdown">
+    <div><span id="days">0</span>Ngày</div>
+    <div><span id="hours">0</span>Giờ</div>
+    <div><span id="minutes">0</span>Phút</div>
+    <div><span id="seconds">0</span>Giây</div>
+  </div>
 </div>
 
-<audio id="tetMusic" preload="auto" loop>
-    <source src="Tet Dong Day.mp3" type="audio/mpeg">
-</audio>
+<!-- lì xì -->
+<div id="lixi-container"></div>
 
-<script src="./script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
