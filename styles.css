@@ -1,22 +1,19 @@
-/* Reset cơ bản */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Toàn trang */
 body {
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
   background: linear-gradient(135deg, #c31432, #240b36);
-  color: #ffffff;
+  color: #fff;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Khung chính */
 .container {
   background: rgba(0, 0, 0, 0.35);
   padding: 24px 28px;
@@ -27,37 +24,31 @@ body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* Tiêu đề năm âm lịch */
 #lunarYear {
   font-size: clamp(20px, 4vw, 28px);
   margin-bottom: 20px;
   font-weight: 600;
-  letter-spacing: 0.5px;
 }
 
-/* Khối thời gian */
 .time {
   display: flex;
-  justify-content: space-between;
   gap: 12px;
+  justify-content: space-between;
 }
 
-/* Ô thời gian */
 .time-box {
   flex: 1;
   background: rgba(255, 255, 255, 0.15);
   border-radius: 12px;
-  padding: 12px 8px;
+  padding: 14px 8px;
 }
 
-/* Số */
 .time-box span {
   display: block;
   font-size: clamp(28px, 6vw, 48px);
   font-weight: bold;
 }
 
-/* Nhãn */
 .time-box small {
   display: block;
   margin-top: 6px;
@@ -65,7 +56,6 @@ body {
   opacity: 0.9;
 }
 
-/* Tablet */
 @media (min-width: 768px) {
   .container {
     max-width: 600px;
@@ -73,13 +63,8 @@ body {
   }
 }
 
-/* PC lớn / TV */
 @media (min-width: 1200px) {
   .container {
     max-width: 720px;
-  }
-
-  .time-box span {
-    font-size: 56px;
   }
 }
