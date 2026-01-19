@@ -1,75 +1,60 @@
-/* ================= TẾT ÂM LỊCH ================= */
-const tetList = {
-  2026: { date: "2026-02-17", name: "Bính Ngọ" },
-  2027: { date: "2027-02-06", name: "Đinh Mùi" },
-  2028: { date: "2028-01-26", name: "Mậu Thân" },
-  2029: { date: "2029-02-13", name: "Kỷ Dậu" },
-  2030: { date: "2030-02-03", name: "Canh Tuất" }
-};
+/* ===== ĐẾM NGƯỢC ===== */
+const tetDate = new Date("2026-02-17T00:00:00").getTime();
 
-function getNextTet() {
-  const now = new Date();
-  for (const y in tetList) {
-    const d = new Date(tetList[y].date);
-    if (d > now) return { year: y, ...tetList[y] };
-  }
-}
-
-const tet = getNextTet();
-document.getElementById("lunarYear").innerText =
-  `Năm ${tet.name} (${tet.year})`;
-
-function updateCountdown() {
-  const now = new Date();
-  const target = new Date(tet.date);
-  const diff = target - now;
+setInterval(() => {
+  const now = new Date().getTime();
+  const diff = tetDate - now;
 
   if (diff <= 0) return;
 
-  days.innerText = Math.floor(diff / 86400000);
-  hours.innerText = Math.floor(diff / 3600000) % 24;
-  minutes.innerText = Math.floor(diff / 60000) % 60;
-  seconds.innerText = Math.floor(diff / 1000) % 60;
+  document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+  document.getElementById("hours").innerText = Math.floor(diff / (1000 * 60 * 60) % 24);
+  document.getElementById("minutes").innerText = Math.floor(diff / (1000 * 60) % 60);
+  document.getElementById("seconds").innerText = Math.floor(diff / 1000 % 60);
+}, 1000);
+
+/* ===== NHẠC ===== */
+const music = document.getElementById("music");
+document.getElementById("musicBtn").onclick = () => {
+  if (music.paused) {
+    music.play();
+  } else {
+    music.pause();
+  }
+};
+
+/* ===== HOA MAI / ĐÀO ===== */
+const flowers = document.querySelector(".flowers");
+const icons = ["🌸","🌼","🌺","🌸","🌼"];
+
+for (let i = 0; i < 40; i++) {
+  const f = document.createElement("span");
+  f.innerText = icons[Math.floor(Math.random() * icons.length)];
+  f.style.left = Math.random() * 100 + "vw";
+  f.style.animationDuration = 5 + Math.random() * 5 + "s";
+  flowers.appendChild(f);
 }
 
-setInterval(updateCountdown, 1000);
-
-/* ================= LÌ XÌ ================= */
-const lixi = document.getElementById("lixi");
-setInterval(() => {
-  const span = document.createElement("span");
-  span.innerText = "🧧";
-  span.style.left = Math.random() * 100 + "vw";
-  span.style.animationDuration = 3 + Math.random() * 4 + "s";
-  lixi.appendChild(span);
-  setTimeout(() => span.remove(), 7000);
-}, 350);
-
-/* ================= PHÁO HOA ================= */
+/* ===== PHÁO HOA ===== */
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
-
-function resize() {
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
-}
-resize();
-window.onresize = resize;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 function firework() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
+  const x = Math.random() * canvas.width;
+  const y = Math.random() * canvas.height / 2;
+  const color = `hsl(${Math.random() * 360},100%,60%)`;
+
   for (let i = 0; i < 40; i++) {
     ctx.beginPath();
-    ctx.arc(
-      Math.random() * canvas.width,
-      Math.random() * canvas.height / 2,
-      2,
-      0,
-      Math.PI * 2
-    );
-    ctx.fillStyle = `hsl(${Math.random()*360},100%,60%)`;
+    ctx.arc(x, y, Math.random() * 3, 0, Math.PI * 2);
+    ctx.fillStyle = color;
     ctx.fill();
   }
 }
 
-setInterval(firework, 600);
+setInterval(() => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  firework();
+}, 700);
