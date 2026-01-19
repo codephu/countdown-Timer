@@ -2,39 +2,43 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Đếm ngược Tết Âm Lịch 2026</title>
+  <title>Đếm Ngược Tết Âm Lịch 2026</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+
+<!-- Hoa chạy -->
+<div class="flower-bar">
+  🌸 🌼 🌺 🌸 🌼 🌺 🌸 🌼 🌺 🌸 🌼 🌺 🌸 🌼 🌺
+</div>
 
 <!-- Hoa rơi -->
 <div class="flowers"></div>
 
-<!-- Nội dung chính -->
-<div class="container">
-  <h1 class="title">🎉 Đếm Ngược Tết Âm Lịch 🎉</h1>
-  <h2 class="year">Tết Bính Ngọ 2026</h2>
+<!-- Nội dung -->
+<div class="wrapper">
+  <div class="container">
+    <h1>🎉 Đếm Ngược Tết Âm Lịch 🎉</h1>
+    <h2 class="year">Tết Bính Ngọ 2026</h2>
 
-  <div class="countdown">
-    <div><span id="days">0</span><small>Ngày</small></div>
-    <div><span id="hours">0</span><small>Giờ</small></div>
-    <div><span id="minutes">0</span><small>Phút</small></div>
-    <div><span id="seconds">0</span><small>Giây</small></div>
+    <div class="countdown">
+      <div><span id="days">0</span><small>Ngày</small></div>
+      <div><span id="hours">0</span><small>Giờ</small></div>
+      <div><span id="minutes">0</span><small>Phút</small></div>
+      <div><span id="seconds">0</span><small>Giây</small></div>
+    </div>
+
+    <button id="musicBtn">🎵 Bật nhạc Tết</button>
   </div>
-
-  <button id="musicBtn">🎵 Bật nhạc Tết</button>
 </div>
 
-<!-- Pháo hoa -->
 <canvas id="fireworks"></canvas>
 
-<!-- Nhạc -->
 <audio id="music" loop>
-  <!-- ĐỔI LINK MP3 NẾU MUỐN -->
-  <source src="https://cdn.pixabay.com/audio/2022/01/18/audio_9d6e6cfa37.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/audio/2022/01/18/audio_9d6e6cfa37.mp3">
 </audio>
 
-<script src="script.js"></script>
+<script src="./script.js"></script>
 </body>
 </html>
