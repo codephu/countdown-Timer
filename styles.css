@@ -1,103 +1,36 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* NỀN TẾT */
-body {
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  height: 100vh;
-  background-image: url("https://images.unsplash.com/photo-1610374792793-f016b002f8e8");
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-}
-
-/* Lớp phủ làm nổi chữ */
-.overlay {
+/* PHÁO HOA */
+#fireworks {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  z-index: 1;
+  z-index: 0;
 }
 
-/* KHUNG CHÍNH */
-.container {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding: 30px;
-  width: 95%;
-  max-width: 900px;
+/* HOA RƠI */
+.flowers span {
+  position: fixed;
+  top: -50px;
+  font-size: 24px;
+  animation: fall linear infinite;
 }
 
-/* TIÊU ĐỀ */
-#lunarYear {
-  font-size: clamp(28px, 5vw, 56px);
-  font-weight: 800;
-  margin-bottom: 40px;
-  text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
-  animation: glow 2s infinite alternate;
-}
-
-/* KHỐI THỜI GIAN */
-.time {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-/* Ô THỜI GIAN */
-.time-box {
-  background: linear-gradient(145deg, #ffcc70, #ff8c00);
-  color: #7a0000;
-  border-radius: 20px;
-  padding: 24px 18px;
-  width: 160px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-  animation: pulse 1.5s infinite;
-}
-
-/* SỐ ĐẾM */
-.time-box span {
-  display: block;
-  font-size: clamp(36px, 6vw, 64px);
-  font-weight: 900;
-}
-
-/* NHÃN */
-.time-box small {
-  display: block;
-  margin-top: 8px;
-  font-size: 16px;
-  letter-spacing: 2px;
-}
-
-/* HIỆU ỨNG */
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-@keyframes glow {
-  from {
-    text-shadow: 0 0 10px #ffd700;
-  }
+@keyframes fall {
   to {
-    text-shadow: 0 0 30px #ff0000;
+    transform: translateY(110vh) rotate(360deg);
   }
 }
 
-/* MOBILE */
-@media (max-width: 600px) {
-  .time-box {
-    width: 130px;
-    padding: 18px 12px;
-  }
+/* NÚT NHẠC */
+#musicBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+  background: #ffd700;
+  color: #7a0000;
+  border: none;
+  padding: 12px 18px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,.5);
 }
