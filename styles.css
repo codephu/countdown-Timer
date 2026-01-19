@@ -4,17 +4,108 @@
   box-sizing: border-box;
 }
 
-html, body {
-  width: 100%;
-  height: 100%;
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  height: 100vh;
+  background: url("https://images.unsplash.com/photo-1610374792793-f016b002f8e8") center/cover no-repeat;
+  overflow: hidden;
 }
 
-body {
-  display: flex;              /* 🔥 FIX */
-  justify-content: center;    /* 🔥 FIX */
-  align-items: center;        /* 🔥 FIX */
+/* PHỦ NỀN */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 1;
+}
 
-  background: radial-gradient(circle at top, #ffec99, #ff2d2d);
-  font-family: "Segoe UI", sans-serif;
-  overflow: hidden;
+/* PHÁO HOA */
+#fireworks {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+/* HOA RƠI */
+.flowers span {
+  position: fixed;
+  top: -50px;
+  z-index: 1;
+  animation: fall3d linear infinite;
+}
+
+@keyframes fall3d {
+  to {
+    transform: translateY(110vh) rotateX(360deg) rotateY(360deg);
+    opacity: 0.8;
+  }
+}
+
+/* KHUNG CHÍNH */
+.container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding: 30px;
+}
+
+/* TIÊU ĐỀ */
+#lunarYear {
+  font-size: clamp(28px, 5vw, 56px);
+  font-weight: 800;
+  margin-bottom: 40px;
+  text-shadow: 0 0 20px gold;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px gold; }
+  to { text-shadow: 0 0 30px red; }
+}
+
+/* THỜI GIAN */
+.time {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.time-box {
+  background: linear-gradient(145deg,#ffd700,#ff8c00);
+  color: #7a0000;
+  width: 150px;
+  padding: 24px;
+  border-radius: 20px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.05); }
+}
+
+.time-box span {
+  font-size: clamp(36px,6vw,64px);
+  font-weight: 900;
+}
+
+.time-box small {
+  display: block;
+  margin-top: 8px;
+  letter-spacing: 2px;
+}
+
+/* NÚT NHẠC */
+#musicBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 3;
+  background: gold;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
 }
