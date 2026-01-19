@@ -1,48 +1,50 @@
-const days = document.getElementById("days");
-const hours = document.getElementById("hours");
-const minutes = document.getElementById("minutes");
-const seconds = document.getElementById("seconds");
-const lunarYearText = document.getElementById("lunarYear");
+/* ===== HOA MAI / HOA ĐÀO ===== */
+const flowerContainer = document.querySelector(".flowers");
+const flowerIcons = ["🌸", "🌼", "🌺", "🧧"];
 
-/* Tết Âm lịch (giờ Việt Nam UTC+7) */
-const lunarNewYears = [
-  { date: new Date("2026-02-17T00:00:00+07:00"), name: "Bính Ngọ 2026" },
-  { date: new Date("2027-02-06T00:00:00+07:00"), name: "Đinh Mùi 2027" },
-  { date: new Date("2028-01-26T00:00:00+07:00"), name: "Mậu Thân 2028" },
-  { date: new Date("2029-02-13T00:00:00+07:00"), name: "Kỷ Dậu 2029" },
-  { date: new Date("2030-02-03T00:00:00+07:00"), name: "Canh Tuất 2030" }
-];
-
-function getNextLunarNewYear() {
-  const now = new Date();
-  return lunarNewYears.find(item => item.date > now) || null;
+for (let i = 0; i < 25; i++) {
+  const span = document.createElement("span");
+  span.textContent = flowerIcons[Math.floor(Math.random() * flowerIcons.length)];
+  span.style.left = Math.random() * 100 + "vw";
+  span.style.animationDuration = 5 + Math.random() * 5 + "s";
+  span.style.opacity = Math.random();
+  flowerContainer.appendChild(span);
 }
 
-let target = getNextLunarNewYear();
+/* ===== PHÁO HOA ===== */
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
 
-function updateCountdown() {
-  if (!target) return;
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.onresize = resizeCanvas;
 
-  const now = new Date();
-  const diff = target.date - now;
+function firework() {
+  const x = Math.random() * canvas.width;
+  const y = Math.random() * canvas.height / 2;
+  const radius = 2 + Math.random() * 3;
 
-  if (diff <= 0) {
-    target = getNextLunarNewYear();
-    return;
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, Math.PI * 2);
+  ctx.fillStyle = `hsl(${Math.random() * 360},100%,60%)`;
+  ctx.fill();
+}
+
+setInterval(firework, 80);
+
+/* ===== NHẠC TẾT ===== */
+const music = document.getElementById("tetMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+musicBtn.onclick = () => {
+  if (music.paused) {
+    music.play();
+    musicBtn.textContent = "🔇 Tắt nhạc";
+  } else {
+    music.pause();
+    musicBtn.textContent = "🔊 Bật nhạc Tết";
   }
-
-  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const h = Math.floor(diff / (1000 * 60 * 60)) % 24;
-  const m = Math.floor(diff / (1000 * 60)) % 60;
-  const s = Math.floor(diff / 1000) % 60;
-
-  days.textContent = d;
-  hours.textContent = h.toString().padStart(2, "0");
-  minutes.textContent = m.toString().padStart(2, "0");
-  seconds.textContent = s.toString().padStart(2, "0");
-
-  lunarYearText.textContent = `Đếm ngược Tết Âm lịch ${target.name}`;
-}
-
-updateCountdown();
-setInterval(updateCountdown, 1000);
+};
