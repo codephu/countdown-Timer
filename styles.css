@@ -1,31 +1,26 @@
-/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-family: "Segoe UI", Tahoma, sans-serif;
 }
 
-/* Nền Tết */
 body {
     min-height: 100vh;
-    background: url("https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd")
-        center/cover no-repeat fixed;
+    background: url("https://images.unsplash.com/photo-1545147986-a9d6f2ab03b5")
+        center / cover no-repeat fixed;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
 }
 
-/* Lớp phủ tối */
 .overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.55);
-    z-index: 1;
+    background: rgba(0,0,0,0.55);
 }
 
-/* Nội dung */
 .container {
     position: relative;
     z-index: 2;
@@ -34,21 +29,19 @@ body {
     animation: fadeIn 1.5s ease;
 }
 
-/* Tiêu đề */
-#title {
+.title {
     font-size: clamp(24px, 5vw, 42px);
     margin-bottom: 10px;
-    text-shadow: 0 0 10px #ffcc66;
+    text-shadow: 0 0 12px gold;
 }
 
-#year {
+.year {
     font-size: clamp(32px, 7vw, 60px);
     color: #ffd700;
     margin-bottom: 30px;
     animation: glow 2s infinite alternate;
 }
 
-/* Countdown */
 .countdown {
     display: flex;
     gap: 15px;
@@ -57,16 +50,16 @@ body {
 }
 
 .box {
-    background: rgba(255, 0, 0, 0.85);
-    border-radius: 15px;
-    padding: 15px 20px;
+    background: rgba(220, 0, 0, 0.9);
+    padding: 18px 22px;
+    border-radius: 16px;
     min-width: 90px;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    box-shadow: 0 0 20px rgba(255,215,0,0.7);
     animation: bounce 2s infinite;
 }
 
 .box span {
-    font-size: clamp(28px, 6vw, 50px);
+    font-size: clamp(28px, 6vw, 48px);
     font-weight: bold;
     display: block;
 }
@@ -75,44 +68,28 @@ body {
     font-size: 14px;
 }
 
-/* Nút nhạc */
 #musicBtn {
     margin-top: 30px;
-    padding: 12px 25px;
+    padding: 12px 28px;
     font-size: 16px;
     border-radius: 30px;
     border: none;
     cursor: pointer;
-    background: linear-gradient(45deg, #ffcc00, #ff6600);
-    color: #000;
+    background: linear-gradient(45deg, gold, orange);
     font-weight: bold;
-    transition: transform 0.2s;
 }
 
-#musicBtn:hover {
-    transform: scale(1.05);
-}
-
-/* Hiệu ứng */
 @keyframes glow {
-    from { text-shadow: 0 0 10px #ffd700; }
-    to   { text-shadow: 0 0 25px #ff9900; }
+    from { text-shadow: 0 0 10px gold; }
+    to { text-shadow: 0 0 28px orange; }
 }
 
 @keyframes bounce {
     0%,100% { transform: translateY(0); }
-    50%     { transform: translateY(-6px); }
+    50% { transform: translateY(-6px); }
 }
 
 @keyframes fadeIn {
     from { opacity: 0; transform: scale(0.9); }
-    to   { opacity: 1; transform: scale(1); }
-}
-
-/* Mobile */
-@media (max-width: 600px) {
-    .box {
-        min-width: 70px;
-        padding: 12px;
-    }
+    to { opacity: 1; transform: scale(1); }
 }
