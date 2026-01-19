@@ -1,65 +1,38 @@
-/* ===== PHÁO HOA NỔ THẬT ===== */
-const canvas = document.getElementById("fireworks");
-const ctx = canvas.getContext("2d");
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Đếm ngược Tết Âm lịch</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-window.addEventListener("resize", () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
+  <!-- PHÁO HOA -->
+  <canvas id="fireworks"></canvas>
 
-class Firework {
-  constructor() {
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height * 0.5;
-    this.particles = [];
-    this.color = `hsl(${Math.random() * 360},100%,60%)`;
+  <!-- HOA RƠI -->
+  <div class="flowers"></div>
 
-    for (let i = 0; i < 50; i++) {
-      this.particles.push({
-        x: this.x,
-        y: this.y,
-        angle: Math.random() * Math.PI * 2,
-        speed: Math.random() * 4 + 2,
-        alpha: 1
-      });
-    }
-  }
+  <!-- LỚP PHỦ -->
+  <div class="overlay"></div>
 
-  update() {
-    this.particles.forEach(p => {
-      p.x += Math.cos(p.angle) * p.speed;
-      p.y += Math.sin(p.angle) * p.speed;
-      p.alpha -= 0.02;
-    });
-  }
+  <!-- NỘI DUNG CHÍNH -->
+  <div class="container">
+    <h1 id="lunarYear">Đếm ngược Tết Âm lịch</h1>
 
-  draw() {
-    this.particles.forEach(p => {
-      ctx.globalAlpha = p.alpha;
-      ctx.fillStyle = this.color;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-      ctx.fill();
-    });
-    ctx.globalAlpha = 1;
-  }
-}
+    <div class="time">
+      <div class="time-box"><span id="days">0</span><small>NGÀY</small></div>
+      <div class="time-box"><span id="hours">00</span><small>GIỜ</small></div>
+      <div class="time-box"><span id="minutes">00</span><small>PHÚT</small></div>
+      <div class="time-box"><span id="seconds">00</span><small>GIÂY</small></div>
+    </div>
+  </div>
 
-let fireworks = [];
+  <!-- NHẠC -->
+  <audio id="tetMusic"></audio>
+  <button id="musicBtn">🔊 Bật nhạc Tết</button>
 
-setInterval(() => {
-  fireworks.push(new Firework());
-}, 900);
-
-function animateFireworks() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  fireworks.forEach((fw, index) => {
-    fw.update();
-    fw.draw();
-    if (fw.particles[0].alpha <= 0) fireworks.splice(index, 1);
-  });
-  requestAnimationFrame(animateFireworks);
-}
-animateFireworks();
+  <script src="countdown.js"></script>
+</body>
+</html>
