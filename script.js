@@ -1,93 +1,73 @@
-/* ================= COUNTDOWN ================= */
-const daysEl = document.getElementById("days");
-const hoursEl = document.getElementById("hours");
-const minutesEl = document.getElementById("minutes");
-const secondsEl = document.getElementById("seconds");
-const yearSolarEl = document.getElementById("yearSolar");
-const yearLunarEl = document.getElementById("yearLunar");
-
-const tetData = {
-    2026: { date: "2026-02-17T00:00:00", lunar: "Bính Ngọ" },
-    2027: { date: "2027-02-06T00:00:00", lunar: "Đinh Mùi" },
-    2028: { date: "2028-01-26T00:00:00", lunar: "Mậu Thân" },
-    2029: { date: "2029-02-13T00:00:00", lunar: "Kỷ Dậu" },
-    2030: { date: "2030-02-03T00:00:00", lunar: "Canh Tuất" }
+/* ================== TẾT ÂM LỊCH ================== */
+const tetDates = {
+  2026: { date: "2026-02-17", name: "Bính Ngọ" },
+  2027: { date: "2027-02-06", name: "Đinh Mùi" },
+  2028: { date: "2028-01-26", name: "Mậu Thân" },
+  2029: { date: "2029-02-13", name: "Kỷ Dậu" },
+  2030: { date: "2030-02-03", name: "Canh Tuất" }
 };
 
 function getNextTet() {
-    const now = new Date();
-    for (let y in tetData) {
-        const t = new Date(tetData[y].date);
-        if (t > now) {
-            yearSolarEl.textContent = `Tết Âm lịch ${y}`;
-            yearLunarEl.textContent = `Năm ${tetData[y].lunar}`;
-            return t;
-        }
-    }
+  const now = new Date();
+  for (const y in tetDates) {
+    const d = new Date(tetDates[y].date);
+    if (d > now) return { year: y, ...tetDates[y] };
+  }
 }
 
-let target = getNextTet();
+const tet = getNextTet();
+document.getElementById("lunarYear").innerText =
+  `Năm ${tet.name} (${tet.year})`;
 
-function updateCountdown() {
-    const diff = target - new Date();
-    daysEl.textContent = Math.floor(diff / 86400000);
-    hoursEl.textContent = Math.floor(diff / 3600000 % 24).toString().padStart(2,"0");
-    minutesEl.textContent = Math.floor(diff / 60000 % 60).toString().padStart(2,"0");
-    secondsEl.textContent = Math.floor(diff / 1000 % 60).toString().padStart(2,"0");
+function countdown() {
+  const now = new Date();
+  const target = new Date(tet.date);
+  const diff = target - now;
+
+  if (diff <= 0) return;
+
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor(diff / 3600000) % 24;
+  const m = Math.floor(diff / 60000) % 60;
+  const s = Math.floor(diff / 1000) % 60;
+
+  days.innerText = d;
+  hours.innerText = h;
+  minutes.innerText = m;
+  seconds.innerText = s;
 }
-setInterval(updateCountdown, 1000);
-updateCountdown();
+setInterval(countdown, 1000);
 
-/* ================= MUSIC (FIXED) ================= */
-const music = document.getElementById("tetMusic");
-const musicBtn = document.getElementById("musicBtn");
-let playing = false;
+/* ================== LÌ XÌ BAY ================== */
+const lixiBox = document.getElementById("lixi-container");
+setInterval(() => {
+  const span = document.createElement("span");
+  span.innerText = "🧧";
+  span.style.left = Math.random() * 100 + "vw";
+  span.style.animationDuration = 3 + Math.random() * 4 + "s";
+  lixiBox.appendChild(span);
+  setTimeout(() => span.remove(), 7000);
+}, 400);
 
-musicBtn.onclick = async () => {
-    try {
-        if (!playing) {
-            await music.play();
-            musicBtn.textContent = "🔇 Tắt nhạc Tết";
-        } else {
-            music.pause();
-            musicBtn.textContent = "🎵 Bật nhạc Tết";
-        }
-        playing = !playing;
-    } catch (e) {
-        alert("⚠️ Trình duyệt chặn nhạc, vui lòng bấm lại!");
-    }
-};
+/* ================== PHÁO HOA ================== */
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+canvas.width = innerWidth;
+canvas.height = innerHeight;
 
-/* ================= HOA MAI / HOA ĐÀO ================= */
-const flowerCanvas = document.getElementById("flowers");
-const fctx = flowerCanvas.getContext("2d");
-flowerCanvas.width = innerWidth;
-flowerCanvas.height = innerHeight;
-
-const flowers = [];
-const emojis = ["🌸", "🌼"];
-
-for (let i = 0; i < 40; i++) {
-    flowers.push({
-        x: Math.random() * flowerCanvas.width,
-        y: Math.random() * flowerCanvas.height,
-        speed: 1 + Math.random() * 2,
-        size: 18 + Math.random() * 12,
-        emoji: emojis[Math.floor(Math.random()*2)]
-    });
+function firework(x, y) {
+  for (let i = 0; i < 50; i++) {
+    ctx.beginPath();
+    ctx.arc(x, y, 2, 0, Math.PI * 2);
+    ctx.fillStyle = `hsl(${Math.random()*360},100%,60%)`;
+    ctx.fill();
+  }
 }
 
-function drawFlowers() {
-    fctx.clearRect(0,0,flowerCanvas.width,flowerCanvas.height);
-    flowers.forEach(f => {
-        fctx.font = `${f.size}px serif`;
-        fctx.fillText(f.emoji, f.x, f.y);
-        f.y += f.speed;
-        if (f.y > flowerCanvas.height) {
-            f.y = -20;
-            f.x = Math.random() * flowerCanvas.width;
-        }
-    });
-    requestAnimationFrame(drawFlowers);
-}
-drawFlowers();
+setInterval(() => {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  firework(
+    Math.random() * canvas.width,
+    Math.random() * canvas.height / 2
+  );
+}, 600);
