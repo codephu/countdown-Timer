@@ -8,30 +8,30 @@
 </head>
 <body>
 
+  <!-- PHÁO HOA -->
+  <canvas id="fireworks"></canvas>
+
+  <!-- HOA RƠI -->
+  <div class="flowers"></div>
+
+  <!-- LỚP PHỦ -->
   <div class="overlay"></div>
 
+  <!-- NỘI DUNG CHÍNH -->
   <div class="container">
     <h1 id="lunarYear">Đếm ngược Tết Âm lịch</h1>
 
     <div class="time">
-      <div class="time-box">
-        <span id="days">0</span>
-        <small>NGÀY</small>
-      </div>
-      <div class="time-box">
-        <span id="hours">00</span>
-        <small>GIỜ</small>
-      </div>
-      <div class="time-box">
-        <span id="minutes">00</span>
-        <small>PHÚT</small>
-      </div>
-      <div class="time-box">
-        <span id="seconds">00</span>
-        <small>GIÂY</small>
-      </div>
+      <div class="time-box"><span id="days">0</span><small>NGÀY</small></div>
+      <div class="time-box"><span id="hours">00</span><small>GIỜ</small></div>
+      <div class="time-box"><span id="minutes">00</span><small>PHÚT</small></div>
+      <div class="time-box"><span id="seconds">00</span><small>GIÂY</small></div>
     </div>
   </div>
+
+  <!-- NHẠC -->
+  <audio id="tetMusic"></audio>
+  <button id="musicBtn">🔊 Bật nhạc Tết</button>
 
   <script src="countdown.js"></script>
 </body>
