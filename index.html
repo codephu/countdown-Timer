@@ -1,46 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Countdown Timer</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="logo">
-      <h1>New Year Countdown</h1>
-      <h1>New Year Countdown</h1>
-    </div>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Đếm ngược Tết Âm lịch</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .time {
+      font-size: 40px;
+      font-weight: bold;
+    }
+    .label {
+      font-size: 16px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
 
-    <!-- <h1>New Year Countdown</h1> -->
+  <h1 id="lunarYear">Tết Âm lịch</h1>
 
-    <div id="countdown" class="countdown">
-      <div class="time">
-        <h2 id="days"></h2>
-        <small>Days</small>
-      </div>
-      <div class="time">
-        <h2 id="hours"></h2>
-        <small>Hours</small>
-      </div>
-      <div class="time">
-        <h2 id="minutes"></h2>
-        <small>Minutes</small>
-      </div>
-      <div class="time">
-        <h2 id="seconds"></h2>
-        <small>Seconds</small>
-      </div>
-    </div>
+  <div class="time">
+    <span id="days">0</span> ngày
+    <span id="hours">00</span> :
+    <span id="minutes">00</span> :
+    <span id="seconds">00</span>
+  </div>
 
-    <div class="title">Chúc mừng năm mới S2</div>
-    <div class="sound">
-      <audio controls autoplay>
-        <source src="Tet Dong Day.mp3" type="audio/mpeg" />
-      </audio>
-    </div>
-
-    <script src="app.js"></script>
-  </body>
+  <script src="countdown.js"></script>
+</body>
 </html>
