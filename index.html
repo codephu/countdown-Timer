@@ -1,38 +1,52 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Đếm ngược Tết Âm lịch</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đếm ngược Tết Âm Lịch</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- PHÁO HOA -->
-  <canvas id="fireworks"></canvas>
+    <!-- Nền phủ mờ -->
+    <div class="overlay"></div>
 
-  <!-- HOA RƠI -->
-  <div class="flowers"></div>
+    <!-- Nội dung chính -->
+    <div class="container">
+        <h1 id="title">Đếm ngược Tết Âm lịch</h1>
+        <h2 id="year">Bính Ngọ 2026</h2>
 
-  <!-- LỚP PHỦ -->
-  <div class="overlay"></div>
+        <div class="countdown">
+            <div class="box">
+                <span id="days">0</span>
+                <small>Ngày</small>
+            </div>
+            <div class="box">
+                <span id="hours">00</span>
+                <small>Giờ</small>
+            </div>
+            <div class="box">
+                <span id="minutes">00</span>
+                <small>Phút</small>
+            </div>
+            <div class="box">
+                <span id="seconds">00</span>
+                <small>Giây</small>
+            </div>
+        </div>
 
-  <!-- NỘI DUNG CHÍNH -->
-  <div class="container">
-    <h1 id="lunarYear">Đếm ngược Tết Âm lịch</h1>
-
-    <div class="time">
-      <div class="time-box"><span id="days">0</span><small>NGÀY</small></div>
-      <div class="time-box"><span id="hours">00</span><small>GIỜ</small></div>
-      <div class="time-box"><span id="minutes">00</span><small>PHÚT</small></div>
-      <div class="time-box"><span id="seconds">00</span><small>GIÂY</small></div>
+        <!-- Nút nhạc -->
+        <button id="musicBtn">🎵 Bật nhạc Tết</button>
     </div>
-  </div>
 
-  <!-- NHẠC -->
-  <audio id="tetMusic"></audio>
-  <button id="musicBtn">🔊 Bật nhạc Tết</button>
+    <!-- Nhạc Tết -->
+    <audio id="tetMusic" loop>
+        <source src="https://cdn.pixabay.com/audio/2023/12/22/audio_9e7dcaeb9c.mp3" type="audio/mpeg">
+    </audio>
 
-  <script src="countdown.js"></script>
+    <!-- JS -->
+    <script src="script.js"></script>
 </body>
-</html>
+</htm
