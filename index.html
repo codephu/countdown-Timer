@@ -1,28 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Đếm Ngược Tết Âm Lịch</title>
+
+<!-- Font thư pháp -->
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: url("https://images.unsplash.com/photo-1549880338-65ddcdfd017b") no-repeat center/cover;
+        font-family: 'Be Vietnam Pro', serif;
+        color: #fff;
+        text-align: center;
+    }
+
+    .overlay {
+        background: rgba(0,0,0,0.45);
+        height: 100%;
+        padding-top: 40px;
+    }
+
+    h1 {
+        font-size: 40px;
+        color: #ffd700;
+    }
+
+    select {
+        padding: 6px 10px;
+        font-size: 16px;
+        border-radius: 6px;
+    }
+
+    .countdown {
+        font-size: 28px;
+        margin-top: 20px;
+    }
+
+    canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+    }
+</style>
+</head>
+
 <body>
-
-<div class="flower-bar">
-  🌸 🌼 🌺 🌸 🌼 🌺 🌸 🌼 🌺 🌸 🌼 🌺
-</div>
-
-<div class="container">
-  <h1>🎉 Đếm Ngược Tết Âm Lịch 🎉</h1>
-  <h2 class="year">Tết Bính Ngọ 2026</h2>
-
-  <div class="countdown">
-    <div><span id="days">0</span><small>Ngày</small></div>
-    <div><span id="hours">0</span><small>Giờ</small></div>
-    <div><span id="minutes">0</span><small>Phút</small></div>
-    <div><span id="seconds">0</span><small>Giây</small></div>
-  </div>
-
-  <button id="musicBtn">🎵 Bật nhạc Tết</button>
-</div>
-
 <canvas id="fireworks"></canvas>
 
-<audio id="music" loop>
-  <source src="https://cdn.pixabay.com/audio/2022/01/18/audio_9d6e6cfa37.mp3">
-</audio>
+<div class="overlay">
+    <h1>🎉 Đếm Ngược Tết Âm Lịch 🎉</h1>
 
-<script src="./script.js"></script>
+    <p>Chọn năm:</p>
+    <select id="yearSelect">
+        <option value="2026">Tết 2026</option>
+        <option value="2027">Tết 2027</option>
+        <option value="2028">Tết 2028</option>
+        <option value="2029">Tết 2029</option>
+        <option value="2030">Tết 2030</option>
+    </select>
+
+    <div class="countdown" id="timer"></div>
+</div>
+
+<script>
+const tetDates = {
+    2026: new Date("2026-02-17T00:00:00"),
+    2027: new Date("2027-02-06T00:00:00"),
+    2028: new Date("2028-01-26T00:00:00"),
+    2029: new Date("2029-02-13T00:00:00"),
+    2030: new Date("2030-02-03T00:00:00")
+};
+
+function updateCountdown() {
+    const year = document.getElementById("yearSelect").value;
+    const now = new Date();
+    const diff = tetDates[year] - now;
+
+    if (diff <= 0) {
+        document.getElementById("timer").innerHTML = "🎆 CHÚC MỪNG NĂM MỚI 🎆";
+        launchFireworks();
+        return;
+    }
+
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor(diff / 3600000) % 24;
+    const m = Math.floor(diff / 60000) % 60;
+    const s = Math.floor(diff / 1000) % 60;
+
+    document.getElementById("timer").innerHTML =
+        `${d} ngày ${h} giờ ${m} phút ${s} giây`;
+}
+
+setInterval(updateCountdown, 1000);
+document.getElementById("yearSelect").addEventListener("change", updateCountdown);
+
+// ==== FIREWORK TEXT ====
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+function launchFireworks() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.font = "bold 70px Be Vietnam Pro";
+    ctx.fillStyle = "gold";
+    ctx.textAlign = "center";
+    ctx.fillText("CHÚC MỪNG NĂM MỚI", canvas.width/2, canvas.height/2);
+}
+</script>
 </body>
+</html>
