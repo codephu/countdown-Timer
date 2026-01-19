@@ -1,35 +1,31 @@
-<!DOCTYPE html>
-<html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <title>Đếm ngược Tết Âm lịch</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 50px;
-    }
-    .time {
-      font-size: 40px;
-      font-weight: bold;
-    }
-    .label {
-      font-size: 16px;
-      color: #666;
-    }
-  </style>
+  ...
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+  <div class="container">
+    <h1 id="lunarYear">Tết Âm lịch</h1>
 
-  <h1 id="lunarYear">Tết Âm lịch</h1>
-
-  <div class="time">
-    <span id="days">0</span> ngày
-    <span id="hours">00</span> :
-    <span id="minutes">00</span> :
-    <span id="seconds">00</span>
+    <div class="time">
+      <div class="time-box">
+        <span id="days">0</span>
+        <small>Ngày</small>
+      </div>
+      <div class="time-box">
+        <span id="hours">00</span>
+        <small>Giờ</small>
+      </div>
+      <div class="time-box">
+        <span id="minutes">00</span>
+        <small>Phút</small>
+      </div>
+      <div class="time-box">
+        <span id="seconds">00</span>
+        <small>Giây</small>
+      </div>
+    </div>
   </div>
 
   <script src="app.js"></script>
 </body>
-</html>
