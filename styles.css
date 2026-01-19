@@ -7,39 +7,60 @@
 
 body {
     min-height: 100vh;
-    background: url("https://images.unsplash.com/photo-1545147986-a9d6f2ab03b5")
-        center / cover no-repeat fixed;
+    background: linear-gradient(
+        135deg,
+        #b30000,
+        #ff0000,
+        #ff9900
+    );
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
     color: #fff;
 }
 
+/* Pháo hoa */
+#fireworks {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+}
+
+/* Lớp phủ */
 .overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.55);
+    background: url("https://i.imgur.com/8ZQZQZJ.png") repeat;
+    opacity: 0.15;
+    z-index: 1;
 }
 
+/* Nội dung */
 .container {
     position: relative;
     z-index: 2;
     text-align: center;
     padding: 30px;
-    animation: fadeIn 1.5s ease;
+    animation: fadeIn 1.2s ease;
 }
 
 .title {
     font-size: clamp(24px, 5vw, 42px);
     margin-bottom: 10px;
-    text-shadow: 0 0 12px gold;
+    text-shadow: 0 0 15px gold;
 }
 
 .year {
     font-size: clamp(32px, 7vw, 60px);
     color: #ffd700;
-    margin-bottom: 30px;
     animation: glow 2s infinite alternate;
+}
+
+.lunar {
+    font-size: clamp(20px, 4vw, 32px);
+    color: #fff2a8;
+    margin-bottom: 25px;
 }
 
 .countdown {
@@ -50,7 +71,7 @@ body {
 }
 
 .box {
-    background: rgba(220, 0, 0, 0.9);
+    background: rgba(200,0,0,0.9);
     padding: 18px 22px;
     border-radius: 16px;
     min-width: 90px;
@@ -61,20 +82,15 @@ body {
 .box span {
     font-size: clamp(28px, 6vw, 48px);
     font-weight: bold;
-    display: block;
-}
-
-.box small {
-    font-size: 14px;
 }
 
 #musicBtn {
     margin-top: 30px;
     padding: 12px 28px;
-    font-size: 16px;
     border-radius: 30px;
     border: none;
     cursor: pointer;
+    font-size: 16px;
     background: linear-gradient(45deg, gold, orange);
     font-weight: bold;
 }
