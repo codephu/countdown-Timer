@@ -6,47 +6,43 @@
     <title>Đếm ngược Tết Âm Lịch</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 
-    <!-- Nền phủ mờ -->
-    <div class="overlay"></div>
+<div class="overlay"></div>
 
-    <!-- Nội dung chính -->
-    <div class="container">
-        <h1 id="title">Đếm ngược Tết Âm lịch</h1>
-        <h2 id="year">Bính Ngọ 2026</h2>
+<div class="container">
+    <h1 class="title">Đếm ngược Tết Âm lịch</h1>
+    <h2 id="year" class="year">Tết Âm lịch 2026</h2>
 
-        <div class="countdown">
-            <div class="box">
-                <span id="days">0</span>
-                <small>Ngày</small>
-            </div>
-            <div class="box">
-                <span id="hours">00</span>
-                <small>Giờ</small>
-            </div>
-            <div class="box">
-                <span id="minutes">00</span>
-                <small>Phút</small>
-            </div>
-            <div class="box">
-                <span id="seconds">00</span>
-                <small>Giây</small>
-            </div>
+    <div class="countdown">
+        <div class="box">
+            <span id="days">0</span>
+            <small>Ngày</small>
         </div>
-
-        <!-- Nút nhạc -->
-        <button id="musicBtn">🎵 Bật nhạc Tết</button>
+        <div class="box">
+            <span id="hours">00</span>
+            <small>Giờ</small>
+        </div>
+        <div class="box">
+            <span id="minutes">00</span>
+            <small>Phút</small>
+        </div>
+        <div class="box">
+            <span id="seconds">00</span>
+            <small>Giây</small>
+        </div>
     </div>
 
-    <!-- Nhạc Tết -->
-    <audio id="tetMusic" loop>
-        <source src="https://cdn.pixabay.com/audio/2023/12/22/audio_9e7dcaeb9c.mp3" type="audio/mpeg">
-    </audio>
+    <button id="musicBtn">🎵 Bật nhạc Tết</button>
+</div>
 
-    <!-- JS -->
-    <script src="script.js"></script>
+<audio id="tetMusic" loop>
+    <source src="https://cdn.pixabay.com/audio/2023/12/22/audio_9e7dcaeb9c.mp3" type="audio/mpeg">
+</audio>
+
+<!-- JS -->
+<script src="./script.js"></script>
 </body>
-</htm
+</html>
