@@ -1,48 +1,65 @@
-const days = document.getElementById("days");
-const hours = document.getElementById("hours");
-const minutes = document.getElementById("minutes");
-const seconds = document.getElementById("seconds");
-const lunarYearText = document.getElementById("lunarYear");
+/* ===== PHÁO HOA NỔ THẬT ===== */
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
 
-/* Tết Âm lịch (giờ Việt Nam UTC+7) */
-const lunarNewYears = [
-  { date: new Date("2026-02-17T00:00:00+07:00"), name: "Bính Ngọ 2026" },
-  { date: new Date("2027-02-06T00:00:00+07:00"), name: "Đinh Mùi 2027" },
-  { date: new Date("2028-01-26T00:00:00+07:00"), name: "Mậu Thân 2028" },
-  { date: new Date("2029-02-13T00:00:00+07:00"), name: "Kỷ Dậu 2029" },
-  { date: new Date("2030-02-03T00:00:00+07:00"), name: "Canh Tuất 2030" }
-];
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
 
-function getNextLunarNewYear() {
-  const now = new Date();
-  return lunarNewYears.find(item => item.date > now) || null;
-}
+class Firework {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height * 0.5;
+    this.particles = [];
+    this.color = `hsl(${Math.random() * 360},100%,60%)`;
 
-let target = getNextLunarNewYear();
-
-function updateCountdown() {
-  if (!target) return;
-
-  const now = new Date();
-  const diff = target.date - now;
-
-  if (diff <= 0) {
-    target = getNextLunarNewYear();
-    return;
+    for (let i = 0; i < 50; i++) {
+      this.particles.push({
+        x: this.x,
+        y: this.y,
+        angle: Math.random() * Math.PI * 2,
+        speed: Math.random() * 4 + 2,
+        alpha: 1
+      });
+    }
   }
 
-  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const h = Math.floor(diff / (1000 * 60 * 60)) % 24;
-  const m = Math.floor(diff / (1000 * 60)) % 60;
-  const s = Math.floor(diff / 1000) % 60;
+  update() {
+    this.particles.forEach(p => {
+      p.x += Math.cos(p.angle) * p.speed;
+      p.y += Math.sin(p.angle) * p.speed;
+      p.alpha -= 0.02;
+    });
+  }
 
-  days.textContent = d;
-  hours.textContent = h.toString().padStart(2, "0");
-  minutes.textContent = m.toString().padStart(2, "0");
-  seconds.textContent = s.toString().padStart(2, "0");
-
-  lunarYearText.textContent = `Đếm ngược Tết Âm lịch ${target.name}`;
+  draw() {
+    this.particles.forEach(p => {
+      ctx.globalAlpha = p.alpha;
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+  }
 }
 
-updateCountdown();
-setInterval(updateCountdown, 1000);
+let fireworks = [];
+
+setInterval(() => {
+  fireworks.push(new Firework());
+}, 900);
+
+function animateFireworks() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  fireworks.forEach((fw, index) => {
+    fw.update();
+    fw.draw();
+    if (fw.particles[0].alpha <= 0) fireworks.splice(index, 1);
+  });
+  requestAnimationFrame(animateFireworks);
+}
+animateFireworks();
