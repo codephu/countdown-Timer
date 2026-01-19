@@ -9,7 +9,6 @@ const musicBtn = document.getElementById("musicBtn");
 
 let musicOn = false;
 
-/* Danh sách Tết Âm lịch (giờ VN) */
 const tetDates = {
     2026: "2026-02-17T00:00:00",
     2027: "2027-02-06T00:00:00",
@@ -20,42 +19,32 @@ const tetDates = {
 
 function getNextTet() {
     const now = new Date();
-    for (let year in tetDates) {
-        const tet = new Date(tetDates[year]);
-        if (tet > now) {
-            yearEl.innerText = `Tết Âm lịch ${year}`;
-            return tet;
+    for (let y in tetDates) {
+        const t = new Date(tetDates[y]);
+        if (t > now) {
+            yearEl.textContent = `Tết Âm lịch ${y}`;
+            return t;
         }
     }
-    return new Date(tetDates[2030]);
 }
 
-let targetDate = getNextTet();
+let target = getNextTet();
 
 function updateCountdown() {
     const now = new Date();
-    const diff = targetDate - now;
+    const diff = target - now;
 
-    if (diff <= 0) {
-        location.reload();
-        return;
-    }
+    if (diff <= 0) location.reload();
 
-    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const h = Math.floor(diff / (1000 * 60 * 60)) % 24;
-    const m = Math.floor(diff / (1000 * 60)) % 60;
-    const s = Math.floor(diff / 1000) % 60;
-
-    daysEl.textContent = d;
-    hoursEl.textContent = h.toString().padStart(2, "0");
-    minutesEl.textContent = m.toString().padStart(2, "0");
-    secondsEl.textContent = s.toString().padStart(2, "0");
+    daysEl.textContent = Math.floor(diff / 86400000);
+    hoursEl.textContent = Math.floor(diff / 3600000 % 24).toString().padStart(2,"0");
+    minutesEl.textContent = Math.floor(diff / 60000 % 60).toString().padStart(2,"0");
+    secondsEl.textContent = Math.floor(diff / 1000 % 60).toString().padStart(2,"0");
 }
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-/* Nhạc Tết */
 musicBtn.onclick = () => {
     if (!musicOn) {
         music.play();
