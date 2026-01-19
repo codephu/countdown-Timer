@@ -1,15 +1,10 @@
-/* ================== COUNTDOWN ================== */
+/* ================= COUNTDOWN ================= */
 const daysEl = document.getElementById("days");
 const hoursEl = document.getElementById("hours");
 const minutesEl = document.getElementById("minutes");
 const secondsEl = document.getElementById("seconds");
 const yearSolarEl = document.getElementById("yearSolar");
 const yearLunarEl = document.getElementById("yearLunar");
-
-const music = document.getElementById("tetMusic");
-const musicBtn = document.getElementById("musicBtn");
-
-let musicOn = false;
 
 const tetData = {
     2026: { date: "2026-02-17T00:00:00", lunar: "Bính Ngọ" },
@@ -34,68 +29,65 @@ function getNextTet() {
 let target = getNextTet();
 
 function updateCountdown() {
-    const now = new Date();
-    const diff = target - now;
-
-    if (diff <= 0) location.reload();
-
+    const diff = target - new Date();
     daysEl.textContent = Math.floor(diff / 86400000);
     hoursEl.textContent = Math.floor(diff / 3600000 % 24).toString().padStart(2,"0");
     minutesEl.textContent = Math.floor(diff / 60000 % 60).toString().padStart(2,"0");
     secondsEl.textContent = Math.floor(diff / 1000 % 60).toString().padStart(2,"0");
 }
-
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-/* ================== MUSIC ================== */
-musicBtn.onclick = () => {
-    musicOn ? music.pause() : music.play();
-    musicBtn.textContent = musicOn ? "🎵 Bật nhạc Tết" : "🔇 Tắt nhạc Tết";
-    musicOn = !musicOn;
-};
+/* ================= MUSIC (FIXED) ================= */
+const music = document.getElementById("tetMusic");
+const musicBtn = document.getElementById("musicBtn");
+let playing = false;
 
-/* ================== FIREWORKS ================== */
-const canvas = document.getElementById("fireworks");
-const ctx = canvas.getContext("2d");
-canvas.width = innerWidth;
-canvas.height = innerHeight;
-
-window.onresize = () => {
-    canvas.width = innerWidth;
-    canvas.height = innerHeight;
-};
-
-let particles = [];
-
-function firework() {
-    const x = Math.random() * canvas.width;
-    const y = Math.random() * canvas.height / 2;
-
-    for (let i = 0; i < 80; i++) {
-        particles.push({
-            x, y,
-            vx: Math.cos(i) * Math.random() * 4,
-            vy: Math.sin(i) * Math.random() * 4,
-            alpha: 1
-        });
+musicBtn.onclick = async () => {
+    try {
+        if (!playing) {
+            await music.play();
+            musicBtn.textContent = "🔇 Tắt nhạc Tết";
+        } else {
+            music.pause();
+            musicBtn.textContent = "🎵 Bật nhạc Tết";
+        }
+        playing = !playing;
+    } catch (e) {
+        alert("⚠️ Trình duyệt chặn nhạc, vui lòng bấm lại!");
     }
-}
+};
 
-function animateFireworks() {
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    particles.forEach((p, i) => {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.alpha -= 0.01;
+/* ================= HOA MAI / HOA ĐÀO ================= */
+const flowerCanvas = document.getElementById("flowers");
+const fctx = flowerCanvas.getContext("2d");
+flowerCanvas.width = innerWidth;
+flowerCanvas.height = innerHeight;
 
-        ctx.fillStyle = `rgba(255,215,0,${p.alpha})`;
-        ctx.fillRect(p.x, p.y, 3, 3);
+const flowers = [];
+const emojis = ["🌸", "🌼"];
 
-        if (p.alpha <= 0) particles.splice(i,1);
+for (let i = 0; i < 40; i++) {
+    flowers.push({
+        x: Math.random() * flowerCanvas.width,
+        y: Math.random() * flowerCanvas.height,
+        speed: 1 + Math.random() * 2,
+        size: 18 + Math.random() * 12,
+        emoji: emojis[Math.floor(Math.random()*2)]
     });
-    requestAnimationFrame(animateFireworks);
 }
 
-setInterval(firework, 1200);
-animateFireworks();
+function drawFlowers() {
+    fctx.clearRect(0,0,flowerCanvas.width,flowerCanvas.height);
+    flowers.forEach(f => {
+        fctx.font = `${f.size}px serif`;
+        fctx.fillText(f.emoji, f.x, f.y);
+        f.y += f.speed;
+        if (f.y > flowerCanvas.height) {
+            f.y = -20;
+            f.x = Math.random() * flowerCanvas.width;
+        }
+    });
+    requestAnimationFrame(drawFlowers);
+}
+drawFlowers();
