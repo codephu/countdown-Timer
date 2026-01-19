@@ -2,47 +2,37 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đếm ngược Tết Âm Lịch</title>
-
-    <!-- CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+
+<!-- Canvas pháo hoa -->
+<canvas id="fireworks"></canvas>
 
 <div class="overlay"></div>
 
 <div class="container">
     <h1 class="title">Đếm ngược Tết Âm lịch</h1>
-    <h2 id="year" class="year">Tết Âm lịch 2026</h2>
+
+    <h2 id="yearSolar" class="year"></h2>
+    <h3 id="yearLunar" class="lunar"></h3>
 
     <div class="countdown">
-        <div class="box">
-            <span id="days">0</span>
-            <small>Ngày</small>
-        </div>
-        <div class="box">
-            <span id="hours">00</span>
-            <small>Giờ</small>
-        </div>
-        <div class="box">
-            <span id="minutes">00</span>
-            <small>Phút</small>
-        </div>
-        <div class="box">
-            <span id="seconds">00</span>
-            <small>Giây</small>
-        </div>
+        <div class="box"><span id="days">0</span><small>Ngày</small></div>
+        <div class="box"><span id="hours">00</span><small>Giờ</small></div>
+        <div class="box"><span id="minutes">00</span><small>Phút</small></div>
+        <div class="box"><span id="seconds">00</span><small>Giây</small></div>
     </div>
 
     <button id="musicBtn">🎵 Bật nhạc Tết</button>
 </div>
 
 <audio id="tetMusic" loop>
-    <source src="https://cdn.pixabay.com/audio/2023/12/22/audio_9e7dcaeb9c.mp3" type="audio/mpeg">
+    <source src="https://cdn.pixabay.com/audio/2023/12/22/audio_9e7dcaeb9c.mp3">
 </audio>
 
-<!-- JS -->
 <script src="./script.js"></script>
 </body>
 </html>
