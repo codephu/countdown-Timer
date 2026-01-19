@@ -1,111 +1,118 @@
+/* Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
 }
 
+/* Nền Tết */
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  height: 100vh;
-  background: url("https://images.unsplash.com/photo-1610374792793-f016b002f8e8") center/cover no-repeat;
-  overflow: hidden;
+    min-height: 100vh;
+    background: url("https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd")
+        center/cover no-repeat fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
 }
 
-/* PHỦ NỀN */
+/* Lớp phủ tối */
 .overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  z-index: 1;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1;
 }
 
-/* PHÁO HOA */
-#fireworks {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-}
-
-/* HOA RƠI */
-.flowers span {
-  position: fixed;
-  top: -50px;
-  z-index: 1;
-  animation: fall3d linear infinite;
-}
-
-@keyframes fall3d {
-  to {
-    transform: translateY(110vh) rotateX(360deg) rotateY(360deg);
-    opacity: 0.8;
-  }
-}
-
-/* KHUNG CHÍNH */
+/* Nội dung */
 .container {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  color: #fff;
-  padding: 30px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 30px;
+    animation: fadeIn 1.5s ease;
 }
 
-/* TIÊU ĐỀ */
-#lunarYear {
-  font-size: clamp(28px, 5vw, 56px);
-  font-weight: 800;
-  margin-bottom: 40px;
-  text-shadow: 0 0 20px gold;
-  animation: glow 2s infinite alternate;
+/* Tiêu đề */
+#title {
+    font-size: clamp(24px, 5vw, 42px);
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px #ffcc66;
 }
 
-@keyframes glow {
-  from { text-shadow: 0 0 10px gold; }
-  to { text-shadow: 0 0 30px red; }
+#year {
+    font-size: clamp(32px, 7vw, 60px);
+    color: #ffd700;
+    margin-bottom: 30px;
+    animation: glow 2s infinite alternate;
 }
 
-/* THỜI GIAN */
-.time {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
+/* Countdown */
+.countdown {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-.time-box {
-  background: linear-gradient(145deg,#ffd700,#ff8c00);
-  color: #7a0000;
-  width: 150px;
-  padding: 24px;
-  border-radius: 20px;
-  animation: pulse 1.5s infinite;
+.box {
+    background: rgba(255, 0, 0, 0.85);
+    border-radius: 15px;
+    padding: 15px 20px;
+    min-width: 90px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    animation: bounce 2s infinite;
 }
 
-@keyframes pulse {
-  50% { transform: scale(1.05); }
+.box span {
+    font-size: clamp(28px, 6vw, 50px);
+    font-weight: bold;
+    display: block;
 }
 
-.time-box span {
-  font-size: clamp(36px,6vw,64px);
-  font-weight: 900;
+.box small {
+    font-size: 14px;
 }
 
-.time-box small {
-  display: block;
-  margin-top: 8px;
-  letter-spacing: 2px;
-}
-
-/* NÚT NHẠC */
+/* Nút nhạc */
 #musicBtn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 3;
-  background: gold;
-  border: none;
-  padding: 12px 18px;
-  border-radius: 30px;
-  font-size: 16px;
-  cursor: pointer;
+    margin-top: 30px;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(45deg, #ffcc00, #ff6600);
+    color: #000;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+#musicBtn:hover {
+    transform: scale(1.05);
+}
+
+/* Hiệu ứng */
+@keyframes glow {
+    from { text-shadow: 0 0 10px #ffd700; }
+    to   { text-shadow: 0 0 25px #ff9900; }
+}
+
+@keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50%     { transform: translateY(-6px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .box {
+        min-width: 70px;
+        padding: 12px;
+    }
 }
