@@ -2,64 +2,67 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
 }
 
 body {
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(180deg,#b30000,#ffcc66);
-  color: #fff;
+  font-family: "Segoe UI", sans-serif;
+
+  /* NỀN TẾT */
+  background:
+    radial-gradient(circle at top, #ffdd88, transparent 40%),
+    linear-gradient(180deg, #b30000, #ff9900);
 }
 
-/* Canvas pháo hoa */
+/* PHÁO HOA */
 #fireworks {
   position: fixed;
   inset: 0;
   z-index: 0;
 }
 
-/* Nội dung chính */
-.container {
+/* WRAPPER */
+.wrapper {
   position: relative;
   z-index: 2;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   text-align: center;
-  padding-top: 8vh;
+  color: #fff;
 }
 
-/* Chữ thư pháp */
-.calligraphy {
-  font-size: clamp(36px,6vw,72px);
+/* CHỮ */
+.title {
+  font-size: clamp(36px, 6vw, 72px);
   color: gold;
   text-shadow: 0 0 10px red;
-  animation: write 3s ease forwards;
-}
-
-@keyframes write {
-  from { letter-spacing: 20px; opacity: 0; }
-  to   { letter-spacing: 2px; opacity: 1; }
+  margin-bottom: 10px;
 }
 
 #lunarYear {
-  margin-top: 10px;
-  font-size: clamp(20px,3vw,32px);
-  color: #fff6c3;
+  font-size: clamp(20px, 3vw, 30px);
+  margin-bottom: 30px;
 }
 
-/* Countdown */
+/* COUNTDOWN */
 .countdown {
   display: flex;
-  justify-content: center;
   gap: 12px;
-  margin-top: 30px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .countdown div {
-  background: rgba(0,0,0,0.35);
+  background: rgba(0,0,0,0.4);
   padding: 12px 16px;
   border-radius: 12px;
-  min-width: 80px;
+  min-width: 90px;
 }
 
 .countdown span {
@@ -69,11 +72,11 @@ body {
   color: #ffeb3b;
 }
 
-/* Lì xì bay */
-#lixi-container span {
+/* LÌ XÌ */
+#lixi span {
   position: fixed;
-  top: -50px;
-  font-size: 28px;
+  top: -40px;
+  font-size: 30px;
   animation: fall linear infinite;
 }
 
