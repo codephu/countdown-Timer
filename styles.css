@@ -7,12 +7,7 @@
 
 body {
     min-height: 100vh;
-    background: linear-gradient(
-        135deg,
-        #b30000,
-        #ff0000,
-        #ff9900
-    );
+    background: radial-gradient(circle at top, #ffcc66, #cc0000);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,20 +15,11 @@ body {
     color: #fff;
 }
 
-/* Pháo hoa */
-#fireworks {
+/* Canvas */
+#fireworks, #flowers {
     position: fixed;
     inset: 0;
     z-index: 0;
-}
-
-/* Lớp phủ */
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: url("https://i.imgur.com/8ZQZQZJ.png") repeat;
-    opacity: 0.15;
-    z-index: 1;
 }
 
 /* Nội dung */
@@ -42,24 +28,21 @@ body {
     z-index: 2;
     text-align: center;
     padding: 30px;
-    animation: fadeIn 1.2s ease;
 }
 
 .title {
     font-size: clamp(24px, 5vw, 42px);
-    margin-bottom: 10px;
     text-shadow: 0 0 15px gold;
 }
 
 .year {
     font-size: clamp(32px, 7vw, 60px);
     color: #ffd700;
-    animation: glow 2s infinite alternate;
+    margin-top: 10px;
 }
 
 .lunar {
-    font-size: clamp(20px, 4vw, 32px);
-    color: #fff2a8;
+    font-size: clamp(20px, 4vw, 30px);
     margin-bottom: 25px;
 }
 
@@ -71,12 +54,11 @@ body {
 }
 
 .box {
-    background: rgba(200,0,0,0.9);
+    background: linear-gradient(#ff3333, #cc0000);
     padding: 18px 22px;
-    border-radius: 16px;
+    border-radius: 18px;
     min-width: 90px;
-    box-shadow: 0 0 20px rgba(255,215,0,0.7);
-    animation: bounce 2s infinite;
+    box-shadow: 0 0 25px rgba(255,215,0,0.7);
 }
 
 .box span {
@@ -93,19 +75,4 @@ body {
     font-size: 16px;
     background: linear-gradient(45deg, gold, orange);
     font-weight: bold;
-}
-
-@keyframes glow {
-    from { text-shadow: 0 0 10px gold; }
-    to { text-shadow: 0 0 28px orange; }
-}
-
-@keyframes bounce {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
 }
