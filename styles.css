@@ -9,8 +9,10 @@ body {
     margin: 0;
     font-family: "Segoe UI", Tahoma, sans-serif;
 
-   background:
-       linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)),
+    background-color: red; /* màu nền ngoài ảnh */
+
+    background-image:
+        linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)),
         url("background.jpg");
 
     background-repeat: no-repeat;
@@ -23,6 +25,7 @@ body {
     overflow-x: hidden;
     color: #fff;
 }
+
 
 
 /* Canvas */
